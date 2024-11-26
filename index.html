@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <title>Spam Classifier</title>
+</head>
+
+<body>
+    <div class="main">
+        <h1>Spam Classifier</h1>
+        <form id="spamForm">
+            <label for="message" class="form-label">Enter your message:</label>
+            <input type="text" id="message" name="message" class="form-control" required placeholder="Type your message here...">
+            <div class="wrap">
+                <button type="submit" class="btn btn-success">Check</button>
+            </div>
+        </form>
+        <h2 id="result" class="result-text">Prediction will appear here...</h2>
+    </div>
+
+    <script>
+        // JavaScript code embedded directly in the HTML
+        document.getElementById("spamForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const message = document.getElementById("message").value;
+
+            // Simulating the fetch response for testing (replace this part with actual fetch request)
+            const mockResponse = {
+                prediction: message.toLowerCase().includes("offer") ? "Spam" : "Not Spam"
+            };
+
+            // Handle the response
+            const resultElement = document.getElementById("result");
+            resultElement.innerText = `Prediction: ${mockResponse.prediction}`;
+
+            // Change color based on prediction
+            if (mockResponse.prediction === "Spam") {
+                resultElement.className = "result-text spam";
+            } else {
+                resultElement.className = "result-text not-spam";
+            }
+        });
+    </script>
+</body>
+
+</html>
